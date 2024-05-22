@@ -1,0 +1,23 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:rw
+
+  orch:
+    image: frittenburger/wo-ist-dirk
+    build: orch
+    container_name: orch
+    restart: unless-stopped
+    volumes:
+      - ./orch/config:/app/config:rw
+
+
+
+
