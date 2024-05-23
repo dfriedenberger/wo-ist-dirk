@@ -4,6 +4,8 @@ Automatic Position Tracking
 
 ## Installation
 
+docker build -t frittenburger/wo-ist-dirk orch
+
 
 docker-compose up
 

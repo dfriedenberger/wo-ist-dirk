@@ -6,7 +6,6 @@ services:
     restart: unless-stopped
     ports:
       - "1883:1883" #default mqtt port
-      - "9001:9001" #default mqtt port for websockets
     volumes:
       - ./mosquitto/config:/mosquitto/config:rw
 
@@ -15,8 +14,11 @@ services:
     build: orch
     container_name: orch
     restart: unless-stopped
+    ports:
+      - "8884:8884" #http port wo-ist-dirk
     volumes:
       - ./orch/config:/app/config:rw
+      - ./orch/data:/app/data:rw
 
 
 
