@@ -6,6 +6,8 @@ Automatic Position Tracking
 
 docker build -t frittenburger/wo-ist-dirk orch
 
+docker push frittenburger/wo-ist-dirk 
+
 
 docker-compose up
 
@@ -19,7 +21,10 @@ mosquitto_passwd /mosquitto/config/pwfile <user>
 ```
 
 
-
+### Start web api
+```
+uvicorn server:app --reload
+```
 
 ### Test
 Subscribe Topic
