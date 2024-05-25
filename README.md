@@ -83,6 +83,11 @@ python subscribe.py
 ```
 
 ### Test MQTT
+Login to file-logger container
+```
+docker exec -it wo-ist-dirk-file-logger-1 bash
+```
+
 Subscribe Topic
 ```
 mosquitto_sub -v -h mosquitto -t 'owntracks/#' -u <user> -P <password>

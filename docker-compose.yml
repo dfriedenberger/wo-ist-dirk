@@ -33,6 +33,7 @@ services:
     image: frittenburger/mqtt-file-logger
     volumes:
       - ./file-logger/config:/app/config:rw
+      - ./file-logger/data:/app/data:rw
     restart: always
 
 
