@@ -3,12 +3,14 @@ import logging
 import random
 from datetime import datetime
 
+import configparser
 import paho.mqtt.client as mqtt
 
+configParser = configparser.RawConfigParser()
+configParser.read('config/subscriber.conf')
 
-config = None
-with open('config/subscriber.json', encoding='UTF-8') as f:
-    config = json.load(f)
+config = configParser['default']
+
 
 # Generate a Client ID with the subscribe prefix.
 client_id = f'subscribe-{random.randint(0, 100)}'
@@ -50,7 +52,8 @@ def run():
     client.on_connect = on_connect
     client.on_message = on_message
 
-    client.connect(config['broker'], config['port'], 60)
+    logging.info(f"Connect to {config['broker']}:{config['port']} with user {config['username']}")
+    client.connect(config['broker'], int(config['port']), 60)
 
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.

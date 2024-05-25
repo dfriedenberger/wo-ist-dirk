@@ -30,9 +30,9 @@ services:
     restart: always
 
   file-logger:
-    image: frittenburger/wo-ist-dirk/file-logger
+    image: frittenburger/mqtt-file-logger
     volumes:
-      - file-logger/config:/app/config:rw
+      - ./file-logger/config:/app/config:rw
     restart: always
 
 
