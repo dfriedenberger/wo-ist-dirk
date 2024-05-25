@@ -2,12 +2,11 @@ services:
   mosquitto:
     image: eclipse-mosquitto
     hostname: mosquitto
-    #container_name: mosquitto
-    restart: unless-stopped
     ports:
       - "1883:1883" #default mqtt port
     volumes:
       - ./mosquitto/config:/mosquitto/config:rw
+    restart: always
 
   otrecorder:
     image: owntracks/recorder
@@ -16,18 +15,26 @@ services:
     volumes:
       - ./otrecorder/store:/store
       - ./otrecorder/config:/config
-    restart: unless-stopped
+    restart: always
 
   owntracks-frontend:
     image: owntracks/frontend
     ports:
       - 8884:8884
     volumes:
-      - ./path/to/custom/config.js:/usr/share/nginx/html/config/config.js
+      - ./frontend/config/config.js:/usr/share/nginx/html/config/config.js
     environment:
       - SERVER_HOST=otrecorder
       - SERVER_PORT=8083
       - LISTEN_PORT=8884
-    restart: unless-stopped
+    restart: always
+
+  file-logger:
+    image: frittenburger/wo-ist-dirk/file-logger
+    volumes:
+      - file-logger/config:/app/config:rw
+    restart: always
+
+
 
 

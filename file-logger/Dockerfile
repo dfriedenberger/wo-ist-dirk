@@ -13,13 +13,6 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip install -r ./requirements.txt
 COPY subscribe.py subscribe.py
-COPY server.py server.py
-COPY templates templates
-COPY htdocs htdocs
 
-
-COPY wrapper.sh wrapper.sh
-RUN dos2unix wrapper.sh
-RUN chmod 0700 wrapper.sh
-CMD ./wrapper.sh
+CMD ["python" , "subscribe.py"]
 
